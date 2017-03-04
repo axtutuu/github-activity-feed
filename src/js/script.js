@@ -1,10 +1,15 @@
-import Sample from './lib/Sample';
-import $ from 'jquery';
+import React from 'react';
+import {render} from 'react-dom';
+import { hashHistory, Router, Route, IndexRoute, Link } from 'react-router';
 
-const sample = new Sample({
-    name: 'world'
-});
+// pages
+import LayoutEl from './components/els/LayoutEl.jsx';
+import IndexView from './components/views/IndexView.jsx';
 
-$('.wrapper').on('click', () => {
-    console.log(`hello, ${sample.name}.`);
-});
+render((
+  <Router history={hashHistory}>
+    <Route path='/' component={LayoutEl}>
+      <IndexRoute component={IndexView} />
+    </Route>
+  </Router>), document.querySelector('#app')
+)

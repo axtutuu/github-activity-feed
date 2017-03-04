@@ -42,7 +42,7 @@ gulp.task('css', gulp.series('sass'));
 
 // js
 gulp.task('browserify', () => {
-    return browserify(`${SRC}/js/app.jsx`)
+    return browserify(`${SRC}/js/script.js`)
         .transform(babelify)
         .bundle()
         .pipe(source('script.js'))
@@ -80,7 +80,7 @@ gulp.task('browser-sync', () => {
     });
 
     watch([`${SRC}/scss/**/*.scss`], gulp.series('sass', browserSync.reload));
-    watch([`${SRC}/js/**/*.jsx`], gulp.series('browserify', browserSync.reload));
+    watch([`${SRC}/js/**/*.js`, `${SRC}/js/**/*.jsx`], gulp.series('browserify', browserSync.reload));
     watch([
         `${SRC}/pug/**/*.pug`,
         `${SRC}/config/meta.yml`
